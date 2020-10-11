@@ -30,19 +30,14 @@ namespace CheckPangramText
                 string pengram = "not pangram";
                 string p = new string(text.Distinct().ToArray());
                 int t = 0;
-                string[] a = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(",").ToArray();
-                for (int i = 0; i < 26; i++)
+                List<string> a = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(",").ToList();
+
+                foreach (var item in p)
                 {
-                    if (p.Contains(a[i]))
-                    {
-                        t++;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    a.Remove(item.ToString());
                 }
-                if (t == 26)
+
+                if (a.Count == 0)
                 {
                     pengram = "pangram";
                 }
